@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace SystAnalys_lr1
 {
-    class Vertex
+    public class Vertex
     {
         public int x, y;
-
+        public Vertex()
+        { }
         public Vertex(int x, int y)
         {
             this.x = x;
@@ -21,10 +22,11 @@ namespace SystAnalys_lr1
         }
     }
 
-    class Edge
+    public class Edge
     {
         public int v1, v2;
-
+        public Edge()
+        { }
         public Edge(int v1, int v2)
         {
             this.v1 = v1;

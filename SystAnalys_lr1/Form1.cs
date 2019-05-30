@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml.Serialization;
 
 namespace SystAnalys_lr1
 {
@@ -135,11 +136,11 @@ namespace SystAnalys_lr1
                             selected1 = i;
                             sheet.Image = G.GetBitmap();
                             createAdjAndOut();
-                            listBoxMatrix.Items.Clear();
+                            //listBoxMatrix.Items.Clear();
                             int degree = 0;
                             for (int j = 0; j < V.Count; j++)
                                 degree += AMatrix[selected1, j];
-                            listBoxMatrix.Items.Add("Степень вершины №" + (selected1 + 1) + " равна " + degree);
+                            //listBoxMatrix.Items.Add("Степень вершины №" + (selected1 + 1) + " равна " + degree);
                             break;
                         }
                     }
@@ -266,17 +267,17 @@ namespace SystAnalys_lr1
         {
             AMatrix = new int[V.Count, V.Count];
             G.fillAdjacencyMatrix(V.Count, E, AMatrix);
-            listBoxMatrix.Items.Clear();
+            //listBoxMatrix.Items.Clear();
             string sOut = "    ";
             for (int i = 0; i < V.Count; i++)
                 sOut += (i + 1) + " ";
-            listBoxMatrix.Items.Add(sOut);
+            //listBoxMatrix.Items.Add(sOut);
             for (int i = 0; i < V.Count; i++)
             {
                 sOut = (i + 1) + " | ";
                 for (int j = 0; j < V.Count; j++)
                     sOut += AMatrix[i, j] + " ";
-                listBoxMatrix.Items.Add(sOut);
+                //listBoxMatrix.Items.Add(sOut);
             }
         }
 
@@ -287,27 +288,27 @@ namespace SystAnalys_lr1
             {
                 IMatrix = new int[V.Count, E.Count];
                 G.fillIncidenceMatrix(V.Count, E, IMatrix);
-                listBoxMatrix.Items.Clear();
+                //listBoxMatrix.Items.Clear();
                 string sOut = "    ";
                 for (int i = 0; i < E.Count; i++)
                     sOut += (char)('a' + i) + " ";
-                listBoxMatrix.Items.Add(sOut);
+                //listBoxMatrix.Items.Add(sOut);
                 for (int i = 0; i < V.Count; i++)
                 {
                     sOut = (i + 1) + " | ";
                     for (int j = 0; j < E.Count; j++)
                         sOut += IMatrix[i, j] + " ";
-                    listBoxMatrix.Items.Add(sOut);
+                    //listBoxMatrix.Items.Add(sOut);
                 }
             }
-            else
-                listBoxMatrix.Items.Clear();
+            //else
+            //    //listBoxMatrix.Items.Clear();
         }
 
         //поиск элементарных цепей
         private void chainButton_Click(object sender, EventArgs e)
         {
-            listBoxMatrix.Items.Clear();
+            //listBoxMatrix.Items.Clear();
             //1-white 2-black
             int[] color = new int[V.Count];
             for (int i = 0; i < V.Count - 1; i++)
@@ -327,7 +328,7 @@ namespace SystAnalys_lr1
                 color[u] = 2;
             else
             {
-                listBoxMatrix.Items.Add(s);
+                //listBoxMatrix.Items.Add(s);
                 return;
             }
             for (int w = 0; w < E.Count; w++)
@@ -348,7 +349,7 @@ namespace SystAnalys_lr1
         //поиск элементарных циклов
         private void cycleButton_Click(object sender, EventArgs e)
         {
-            listBoxMatrix.Items.Clear();
+            //listBoxMatrix.Items.Clear();
             //1-white 2-black
             int[] color = new int[V.Count];
             for (int i = 0; i < V.Count; i++)
@@ -381,19 +382,19 @@ namespace SystAnalys_lr1
                     for (int i = 1; i < cycle.Count; i++)
                         s += "-" + cycle[i].ToString();
                     bool flag = false; //есть ли палиндром для этого цикла графа в листбоксе?
-                    for (int i = 0; i < listBoxMatrix.Items.Count; i++)
-                        if (listBoxMatrix.Items[i].ToString() == s)
-                        {
-                            flag = true;
-                            break;
-                        }
+                    //for (int i = 0; i < listBoxMatrix.Items.Count; i++)
+                    //    if (listBoxMatrix.Items[i].ToString() == s)
+                    //    {
+                    //        flag = true;
+                    //        break;
+                    //    }
                     if (!flag)
                     {
                         cycle.Reverse();
                         s = cycle[0].ToString();
                         for (int i = 1; i < cycle.Count; i++)
                             s += "-" + cycle[i].ToString();
-                        listBoxMatrix.Items.Add(s);
+                        //listBoxMatrix.Items.Add(s);
                     }
                     return;
                 }
@@ -425,11 +426,33 @@ namespace SystAnalys_lr1
             aboutForm FormAbout = new aboutForm();
             FormAbout.ShowDialog();
         }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            //сериализируем вершины 
+
+            
+            
+                File.Delete("vertex.xml");
+                File.Delete("Edge.xml");
+                XmlSerializer Ver = new XmlSerializer(typeof(List<Vertex>));
+                FileStream file = new FileStream("vertex.xml", FileMode.OpenOrCreate);
+                Ver.Serialize(file, V);
+                Console.WriteLine("Объект сериализован");
+                file.Close();
+                //сериализируем ребра
+                XmlSerializer Edge = new XmlSerializer(typeof(List<Edge>));
+                FileStream file_2 = new FileStream("Edge.xml", FileMode.OpenOrCreate);
+                Edge.Serialize(file_2, E);
+                Console.WriteLine("Объект сериализован");
+                file_2.Close();
+                        
+
+        }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            if (sheet.Image != null)
-            {
+            
+            
                 SaveFileDialog savedialog = new SaveFileDialog();
                 savedialog.Title = "Сохранить картинку как...";
                 savedialog.OverwritePrompt = true;
@@ -451,4 +474,4 @@ namespace SystAnalys_lr1
             }
         }
     }
-}
+
