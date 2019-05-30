@@ -449,6 +449,19 @@ namespace SystAnalys_lr1
 
         }
 
+        private void Load_Click(object sender, EventArgs e)
+        {   //десериализируем вершины
+             FileStream file = new FileStream("vertex.xml", FileMode.Open, FileAccess.Read, FileShare.None);
+             XmlSerializer Ver = new XmlSerializer(typeof(List<Vertex>));
+                V = (List<Vertex>)Ver.Deserialize(file);
+                file.Close();
+                //десериализируем ребра
+                FileStream file_2 = new FileStream("Edge.xml", FileMode.Open, FileAccess.Read, FileShare.None);
+                XmlSerializer Edge = new XmlSerializer(typeof(List<Edge>));
+            E = (List<Edge>)Edge.Deserialize(file_2);
+            file_2.Close();
+            
+        }
         private void saveButton_Click(object sender, EventArgs e)
         {
             
