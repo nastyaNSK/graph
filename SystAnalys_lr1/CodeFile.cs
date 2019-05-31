@@ -25,10 +25,10 @@ namespace SystAnalys_lr1
     public class Edge
     {
         public int v1, v2;
-        public float Weight;
+        public int Weight;
         public Edge()
         { }
-        public Edge(int v1, int v2, float Weight)
+        public Edge(int v1, int v2, int Weight)
         {
             this.v1 = v1;
             this.v2 = v2;
@@ -92,14 +92,14 @@ namespace SystAnalys_lr1
             {
                 gr.DrawArc(darkGoldPen, (V1.x - 2 * R), (V1.y - 2 * R), 2 * R, 2 * R, 90, 270);
                 point = new PointF(V1.x - (int)(2.75 * R), V1.y - (int)(2.75 * R));
-                gr.DrawString(((char)('a' + numberE)).ToString(), fo, br, point);
+                gr.DrawString(((char)(E.Weight)).ToString(), fo, br, point);
                 drawVertex(V1.x, V1.y, (E.v1 + 1).ToString());
             }
             else
             {
                 gr.DrawLine(darkGoldPen, V1.x, V1.y, V2.x, V2.y);
                 point = new PointF((V1.x + V2.x) / 2, (V1.y + V2.y) / 2);
-                gr.DrawString(((char)('a' + numberE)).ToString(), fo, br, point);
+                gr.DrawString(((int)(E.Weight)).ToString(), fo, br, point);
                 drawVertex(V1.x, V1.y, (E.v1 + 1).ToString());
                 drawVertex(V2.x, V2.y, (E.v2 + 1).ToString());
             }
@@ -114,13 +114,13 @@ namespace SystAnalys_lr1
                 {
                     gr.DrawArc(darkGoldPen, (V[E[i].v1].x - 2 * R), (V[E[i].v1].y - 2 * R), 2 * R, 2 * R, 90, 270);
                     point = new PointF(V[E[i].v1].x - (int)(2.75 * R), V[E[i].v1].y - (int)(2.75 * R));
-                    gr.DrawString(((char)('a' + i)).ToString(), fo, br, point);
+                    gr.DrawString(((int)(E[i].Weight)).ToString(), fo, br, point);
                 }
                 else
                 {
                     gr.DrawLine(darkGoldPen, V[E[i].v1].x, V[E[i].v1].y, V[E[i].v2].x, V[E[i].v2].y);
                     point = new PointF((V[E[i].v1].x + V[E[i].v2].x) / 2, (V[E[i].v1].y + V[E[i].v2].y) / 2);
-                    gr.DrawString(((char)('a' + i)).ToString(), fo, br, point);
+                    gr.DrawString(((int)(E[i].Weight)).ToString(), fo, br, point);
                 }
             }
             //рисуем вершины
@@ -138,8 +138,8 @@ namespace SystAnalys_lr1
                     matrix[i, j] = 0;
             for (int i = 0; i < E.Count; i++)
             {
-                matrix[E[i].v1, E[i].v2] = 1;
-                matrix[E[i].v2, E[i].v1] = 1;
+                matrix[E[i].v1, E[i].v2] = E[i].Weight;
+                matrix[E[i].v2, E[i].v1] = E[i].Weight;
             }
         }
 
