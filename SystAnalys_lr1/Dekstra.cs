@@ -13,15 +13,16 @@ namespace SystAnalys_lr1
         int[,] AMatrix;
         int [] distance;
         bool[] visited;
-
-        public Dekstra(List<Vertex> V1, List<Edge> E1, int[,] AMatrix1)
+        int startPoint;
+        public Dekstra(List<Vertex> V1, List<Edge> E1, int[,] AMatrix1, int startPoint1)
         {
             V = V1;
             E = E1;
             AMatrix = AMatrix1;
+            startPoint = startPoint1 - 1;
 
         }
-        void Dijkstra(List<Vertex> V, int[][] AMatrix, int startPoint)
+        public void Dijkstra()
         {
 
             distance = new int[V.Count];
@@ -43,9 +44,9 @@ namespace SystAnalys_lr1
                 u = index;
                 visited[u] = true;
                 for (i = 0; i < V.Count; i++)
-                    if (!visited[i] && AMatrix[u][i]!= 0 && distance[u] != int.MaxValue &&
-                    distance[u] + AMatrix[u][i] < distance[i])
-                        distance[i] = distance[u] + AMatrix[u][i];
+                    if (!visited[i] && AMatrix[u,i]!= 0 && distance[u] != int.MaxValue &&
+                    distance[u] + AMatrix[u,i] < distance[i])
+                        distance[i] = distance[u] + AMatrix[u,i];
             }
             //"Стоимость пути из начальной вершины до остальных:\t\n";
             for (i = 0; i < V.Count; i++) if (distance[i] != int.MaxValue)

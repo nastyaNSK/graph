@@ -17,6 +17,7 @@ namespace SystAnalys_lr1
         DrawGraph G;
         List<Vertex> V;
         List<Edge> E;
+        Dekstra deikstra;
         int[,] AMatrix; //матрица смежности
         int[,] IMatrix; //матрица инцидентности
 
@@ -111,7 +112,7 @@ namespace SystAnalys_lr1
         //кнопка - матрица инцидентности 
         private void buttonInc_Click(object sender, EventArgs e)
         {
-            createIncAndOut();
+            //createIncAndOut();
         }
 
         private void sheet_MouseClick(object sender, MouseEventArgs e)
@@ -169,17 +170,22 @@ namespace SystAnalys_lr1
                                 sheet.Image = G.GetBitmap();
                                 break;
                             }
-                            if (selected2 == -1)
+                            if (selected2 == -1 && textBox1.Text != "")
                             {
-                                G.drawSelectedVertex(V[i].x, V[i].y);
                                 selected2 = i;
-                                E.Add(new Edge(selected1, selected2, 0));
+                                E.Add(new Edge(selected1, selected2, Convert.ToInt32(textBox1.Text)));
                                 G.drawEdge(V[selected1], V[selected2], E[E.Count - 1], E.Count - 1);
                                 selected1 = -1;
                                 selected2 = -1;
                                 sheet.Image = G.GetBitmap();
+                                textBox1.Clear();
                                 break;
                             }
+                            if (selected2 == -1 && textBox1.Text == "")
+                            {
+                                MessageBox.Show("Введите длину ребра, потом создайте ребро", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+
                         }
                     }
                 }
@@ -282,33 +288,33 @@ namespace SystAnalys_lr1
         }
 
         //создание матрицы инцидентности и вывод в листбокс
-        private void createIncAndOut()
-        {
-            if (E.Count > 0)
-            {
-                IMatrix = new int[V.Count, E.Count];
-                G.fillIncidenceMatrix(V.Count, E, IMatrix);
-                //listBoxMatrix.Items.Clear();
-                string sOut = "    ";
-                for (int i = 0; i < E.Count; i++)
-                    sOut += (char)('a' + i) + " ";
-                //listBoxMatrix.Items.Add(sOut);
-                for (int i = 0; i < V.Count; i++)
-                {
-                    sOut = (i + 1) + " | ";
-                    for (int j = 0; j < E.Count; j++)
-                        sOut += IMatrix[i, j] + " ";
-                    //listBoxMatrix.Items.Add(sOut);
-                }
-            }
-            //else
-            //    //listBoxMatrix.Items.Clear();
-        }
+        //private void createIncAndOut()
+        //{
+        //    if (E.Count > 0)
+        //    {
+        //        IMatrix = new int[V.Count, E.Count];
+        //        G.fillIncidenceMatrix(V.Count, E, IMatrix);
+        //        listBox1.Items.Clear();
+        //        string sOut = "    ";
+        //        for (int i = 0; i < E.Count; i++)
+        //            sOut += (char)('a' + i) + " ";
+        //        listBox1.Items.Add(sOut);
+        //        for (int i = 0; i < V.Count; i++)
+        //        {
+        //            sOut = (i + 1) + " | ";
+        //            for (int j = 0; j < E.Count; j++)
+        //                sOut += IMatrix[i, j] + " ";
+        //            listBox1.Items.Add(sOut);
+        //        }
+        //    }
+        //    //else
+        //    //    //listBoxMatrix.Items.Clear();
+        //}
 
         //поиск элементарных цепей
         private void chainButton_Click(object sender, EventArgs e)
         {
-            //listBoxMatrix.Items.Clear();
+            listBox1.Items.Clear();
             //1-white 2-black
             int[] color = new int[V.Count];
             for (int i = 0; i < V.Count - 1; i++)
@@ -328,7 +334,7 @@ namespace SystAnalys_lr1
                 color[u] = 2;
             else
             {
-                //listBoxMatrix.Items.Add(s);
+                listBox1.Items.Add(s);
                 return;
             }
             for (int w = 0; w < E.Count; w++)
@@ -481,6 +487,14 @@ namespace SystAnalys_lr1
                     }
                 }
             }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            createAdjAndOut();
+            Dekstra deikstra = new Dekstra(V, E, AMatrix, Convert.ToInt32(textBox2.Text));
+            deikstra.Dijkstra();
+            G.drawALLGraph(V, E);
         }
+    }
     }
 
