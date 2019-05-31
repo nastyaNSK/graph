@@ -1,2 +1,7 @@
 language: csharp
-solution: SystAnalys_lr1.sln
+mono: none
+dotnet: 2.1.502
+solution: SystAnalys_lr1.slnln
+script:
+  - dotnet restore
+  - dotnet test
