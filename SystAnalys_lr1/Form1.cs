@@ -492,7 +492,9 @@ namespace SystAnalys_lr1
         {
             createAdjAndOut();
             Dekstra deikstra = new Dekstra(V, E, AMatrix, Convert.ToInt32(textBox2.Text));
-            deikstra.Dijkstra();
+            listBox1.Items.Clear();
+            string s = deikstra.Dijkstra();
+            listBox1.Items.Add(s);
             G.drawALLGraph(V, E);
         }
     }
