@@ -173,7 +173,7 @@ namespace SystAnalys_lr1
                             {
                                 G.drawSelectedVertex(V[i].x, V[i].y);
                                 selected2 = i;
-                                E.Add(new Edge(selected1, selected2));
+                                E.Add(new Edge(selected1, selected2, 0));
                                 G.drawEdge(V[selected1], V[selected2], E[E.Count - 1], E.Count - 1);
                                 selected1 = -1;
                                 selected2 = -1;
@@ -420,12 +420,8 @@ namespace SystAnalys_lr1
             }
         }
 
-        //О программе
-        private void about_Click(object sender, EventArgs e)
-        {
-            aboutForm FormAbout = new aboutForm();
-            FormAbout.ShowDialog();
-        }
+
+
         private void Save_Click(object sender, EventArgs e)
         {
             //сериализируем вершины 

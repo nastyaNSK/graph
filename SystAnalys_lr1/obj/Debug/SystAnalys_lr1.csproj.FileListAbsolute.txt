@@ -56,3 +56,6 @@ D:\git_sibsuty\graph\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.Properties.Resource
 D:\git_sibsuty\graph\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.csproj.GenerateResource.Cache
 D:\git_sibsuty\graph\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.exe
 D:\git_sibsuty\graph\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.pdb
+D:\git_sibsuty\graph\graph\SystAnalys_lr1\bin\Debug\SystAnalys_lr1.exe.config
+D:\git_sibsuty\graph\graph\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.exe
+D:\git_sibsuty\graph\graph\SystAnalys_lr1\obj\Debug\SystAnalys_lr1.pdb

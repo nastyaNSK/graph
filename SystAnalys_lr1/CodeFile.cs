@@ -25,12 +25,14 @@ namespace SystAnalys_lr1
     public class Edge
     {
         public int v1, v2;
+        public float Weight;
         public Edge()
         { }
-        public Edge(int v1, int v2)
+        public Edge(int v1, int v2, float Weight)
         {
             this.v1 = v1;
             this.v2 = v2;
+            this.Weight = Weight;
         }
     }
 
