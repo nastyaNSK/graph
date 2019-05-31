@@ -1,0 +1,9 @@
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\SystAnalys_lr1UnitTest1.dll
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\SystAnalys_lr1UnitTest1.pdb
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\SystAnalys_lr1.exe
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\SystAnalys_lr1.pdb
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\bin\Debug\ru\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\obj\Debug\SystAnalys_lr1UnitTest1.csprojResolveAssemblyReference.cache
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\obj\Debug\SystAnalys_lr1UnitTest1.dll
+D:\git_sibsuty\graph\graph\SystAnalys_lr1UnitTest1\obj\Debug\SystAnalys_lr1UnitTest1.pdb
